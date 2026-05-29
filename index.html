@@ -1,14 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Opening YouTube...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script>
-        // Try opening YouTube app
-        window.location.href = "youtube://www.youtube.com/@jagdishsonigra";
-    </script>
+<title>Jagdish Sonigra</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial,sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+}
+
+.logo{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:40px;
+}
+
+.btn{
+    width:320px;
+    padding:20px;
+    margin:15px auto;
+    border:none;
+    border-radius:16px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+    display:block;
+}
+
+.youtube{
+    background:#ff0000;
+    color:white;
+}
+
+.browser{
+    background:white;
+    color:black;
+}
+</style>
 </head>
+
 <body>
-    <h2>Opening Jagdish Sonigra's YouTube Channel...</h2>
+
+<div class="container">
+
+    <div class="logo"></div>
+
+    <div class="title">
+        Jagdish Sonigra
+    </div>
+
+    <button class="btn youtube" onclick="openYT()">
+        🚀 Open in YouTube App
+    </button>
+
+    <button class="btn browser" onclick="openBrowser()">
+        🌐 Open in Browser
+    </button>
+
+</div>
+
+<script>
+
+const APP_URL = "youtube://www.youtube.com/@jagdishsonigra";
+const WEB_URL = "https://youtube.com/@jagdishsonigra";
+
+// Auto-open ONLY first time page loads
+if (!sessionStorage.getItem("opened")) {
+    sessionStorage.setItem("opened", "true");
+    window.location.href = APP_URL;
+}
+
+function openYT() {
+    window.location.href = APP_URL;
+}
+
+function openBrowser() {
+    window.location.href = WEB_URL;
+}
+
+</script>
+
 </body>
 </html>
