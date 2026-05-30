@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Video</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial,sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+}
+
+.logo{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:16px;
+    opacity:0.8;
+    margin-bottom:40px;
+}
+
+.btn{
+    width:320px;
+    padding:20px;
+    margin:15px auto;
+    border:none;
+    border-radius:16px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+    display:block;
+}
+
+.youtube{
+    background:#ff0000;
+    color:white;
+}
+
+.browser{
+    background:white;
+    color:black;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo">🎬</div>
+
+<div class="title">
+    Watch on YouTube
+</div>
+
+<div class="subtitle" id="videoText">
+    Opening video...
+</div>
+
+<button class="btn youtube" onclick="openYT()">
+    🚀 Open in YouTube App
+</button>
+
+<button class="btn browser" onclick="openBrowser()">
+    🌐 Open in Browser
+</button>
+</div>
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const videoId = params.get("v");
+
+if(!videoId){
+    document.getElementById("videoText").innerText =
+    "No video specified.";
+}
+
+const APP_URL = `vnd.youtube://${videoId}`;
+const WEB_URL = `https://youtu.be/${videoId}`;
+
+function openYT() {
+    if(videoId){
+        window.location.href = APP_URL;
+    }
+}
+
+function openBrowser() {
+    if(videoId){
+        window.location.href = WEB_URL;
+    }
+}
+
+// Auto-open once per visit
+if(videoId && !sessionStorage.getItem("opened")) {
+    sessionStorage.setItem("opened","true");
+    openYT();
+}
+
+</script>
+</body>
+</html>
